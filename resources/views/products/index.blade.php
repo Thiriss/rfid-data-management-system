@@ -1,0 +1,69 @@
+<x-app-layout>
+    <div class="container mx-auto px-6 py-6">
+        <!-- Page Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-semibold text-gray-800">All Products</h1>
+            <a href="{{ route('products.create') }}">
+                <x-primary-button>
+                    {{ __('Add Product') }}
+                </x-primary-button>
+            </a>
+        </div>
+
+        <!-- Success Message -->
+        @if(session('success'))
+            <div class="alert alert-success bg-green-100 text-green-700 p-4 mb-4 rounded-md">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Products Table -->
+        <div class="overflow-x-auto bg-white rounded-lg shadow-md">
+            <table class="min-w-full table-auto text-left">
+                <thead class="bg-gray-100 border-b">
+                    <tr>
+                        <!-- Add a number column -->
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">No</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">Name</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">RFID Tag</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">Size</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">Category</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">Type</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">Price</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">Location</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm">
+                    @foreach($products as $index => $product)
+                        <tr class="border-b hover:bg-gray-50">
+                            <!-- Display the row number -->
+                            <td class="px-4 py-2">{{ $loop->iteration }}</td>
+                            <td class="px-4 py-2">{{ $product->name }}</td>
+                            <td class="px-4 py-2">{{ $product->rfid_tag }}</td>
+                            <td class="px-4 py-2">{{ $product->size }}</td>
+                            <td class="px-4 py-2">{{ $product->category }}</td>
+                            <td class="px-4 py-2">{{ $product->type }}</td>
+                            <td class="px-4 py-2">{{ $product->price }}</td>
+                            <td class="px-4 py-2">{{ $product->location }}</td>
+                            <td class="px-4 py-2">
+                                <a href="{{ route('products.edit', $product->id) }}" class="btn bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md">Edit</a>
+                                
+                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination Links -->
+        <div class="mt-4 ">
+            {{ $products->links() }}
+        </div>
+    </div>
+</x-app-layout>
