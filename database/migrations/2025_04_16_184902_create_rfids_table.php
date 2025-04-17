@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rfids', function (Blueprint $table) {
+            $table->id();
             $table->integer('tag_id')->unique();
             $table->foreignId('product_id')->nullable()->constrained()->onDelete('set null');
             $table->string('status')->nullable();

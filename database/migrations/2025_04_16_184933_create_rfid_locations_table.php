@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('tag_id');
             $table->string('location')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
