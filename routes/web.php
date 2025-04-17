@@ -35,6 +35,11 @@ Route::middleware('auth')->group(function () {
 
     // RFID routes
     Route::get('/rfids', [RFIDController::class, 'index'])->name('rfids.index');
+    Route::get('/rfids/create', [RFIDController::class, 'create'])->name('rfids.create');
+    Route::post('/rfids', [RFIDController::class, 'store'])->name('rfids.store');
+    Route::get('/rfids/{rfid}/edit', [RFIDController::class, 'edit'])->name('rfids.edit');
+    Route::put('/rfids/{rfid}', [RFIDController::class, 'update'])->name('rfids.update');
+    Route::delete('/rfids/{rfid}', [RFIDController::class, 'destroy'])->name('rfids.destroy');
 
 });
 

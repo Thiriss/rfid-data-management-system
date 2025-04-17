@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -25,13 +26,17 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'rfid_tag' => 'required|string|unique:products',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'price' => 'required|numeric',
             'size' => 'nullable|string',
             'category' => 'nullable|string',
             'type' => 'nullable|string',
-            'location' => 'nullable|string',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+            $validated['image'] = $imagePath;
+        }
 
         Product::create($validated);
 
@@ -49,13 +54,17 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'rfid_tag' => 'required|string|unique:products,rfid_tag,' . $product->id,
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'price' => 'required|numeric',
             'size' => 'nullable|string',
             'category' => 'nullable|string',
             'type' => 'nullable|string',
-            'location' => 'nullable|string',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+            $validated['image'] = $imagePath;
+        }
 
         $product->update($validated);
 
@@ -65,6 +74,11 @@ class ProductController extends Controller
     // Delete product
     public function destroy(Product $product)
     {
+        // Optional: delete image file
+        if ($product->image && Storage::exists('public/uploads/' . $product->image)) {
+            Storage::delete('public/uploads/' . $product->image);
+        }
+
         $product->delete();
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');

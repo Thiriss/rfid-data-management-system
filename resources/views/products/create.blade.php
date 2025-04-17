@@ -2,7 +2,7 @@
     <div class="container mx-auto p-6">
         <h1 class="text-3xl font-semibold text-gray-800 mb-6">Create Product</h1>
 
-        <form action="{{ route('products.store') }}" method="POST" class="space-y-6">
+        <form action="{{ route('products.store') }}" method="POST" class="space-y-6" enctype="multipart/form-data">
             @csrf
 
             <div class="flex space-x-4">
@@ -13,12 +13,12 @@
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
 
-                <!-- RFID Tag -->
+                <!-- Image -->
                 <div class="flex-1">
-                    <x-input-label for="rfid_tag" :value="__('RFID Tag')" />
-                    <x-text-input id="rfid_tag" name="rfid_tag" type="text" class="mt-1 block w-full" :value="old('rfid_tag')" required />
-                    <x-input-error class="mt-2" :messages="$errors->get('rfid_tag')" />
-                </div>
+                    <x-input-label for="image" :value="__('Image')" />
+                    <input id="image" name="image" type="file" class="mt-1 block w-full" accept="image/*" required />
+                    <x-input-error class="mt-2" :messages="$errors->get('image')" />
+                </div>                
             </div>
 
             <div class="flex space-x-4">
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <!-- Location Dropdown -->
+            {{-- <!-- Location Dropdown -->
             <div>
                 <x-input-label for="location" :value="__('Location')" />
                 <select id="location" name="location" class="mt-1 block w-full form-select border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm">
@@ -78,7 +78,7 @@
                     <option value="Room B" {{ old('location') == 'Room B' ? 'selected' : '' }}>Room B</option>
                 </select>
                 <x-input-error class="mt-2" :messages="$errors->get('location')" />
-            </div>
+            </div> --}}
 
             <!-- Submit Button -->
             <div class="mt-4">

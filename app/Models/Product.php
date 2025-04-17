@@ -9,6 +9,14 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'rfid_tag', 'price', 'size', 'category', 'type', 'location'];
+    protected $fillable = ['name', 'image', 'price', 'size', 'category', 'type'];
+
+        /**
+     * Get the product instance associated with this RFID tag.
+     */
+    public function rfids()
+    {
+        return $this->hasMany(Rfid::class);
+    }
 }
 
