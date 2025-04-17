@@ -68,19 +68,6 @@
                     <x-input-error class="mt-2" :messages="$errors->get('type')" />
                 </div>
             </div>
-
-            {{-- <!-- Location Dropdown -->
-            <div>
-                <x-input-label for="location" :value="__('Location')" />
-                <select id="location" name="location" class="mt-1 block w-full form-select border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm">
-                    <option value="">Select Location</option>
-                    <option value="Room A" {{ old('location') == 'Room A' ? 'selected' : '' }}>Room A</option>
-                    <option value="Room B" {{ old('location') == 'Room B' ? 'selected' : '' }}>Room B</option>
-                </select>
-                <x-input-error class="mt-2" :messages="$errors->get('location')" />
-            </div> --}}
-
-            <!-- Submit Button -->
             <div class="mt-4">
                 <x-primary-button>
                     {{ __('Create Product') }}

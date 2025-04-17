@@ -49,11 +49,10 @@
                                 <x-primary-button>
                                     {{ __('Edit') }}
                                 </x-primary-button>
-                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
+                                <a href="{{ route('products.destroy', $product->id)}}">
+                                <x-danger-button>
+                                    {{ __('Delete') }}
+                                </x-danger-button>
                             </td>
                         </tr>
                     @endforeach
