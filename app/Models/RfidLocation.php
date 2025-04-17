@@ -9,7 +9,7 @@ class RfidLocation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tag_id', 'location'];
+    protected $fillable = ['tag_id', 'location','status'];
     
 }
 
