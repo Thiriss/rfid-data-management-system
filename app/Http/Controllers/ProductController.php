@@ -52,6 +52,7 @@ class ProductController extends Controller
     // Update product
     public function update(Request $request, Product $product)
     {
+        
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -61,10 +62,17 @@ class ProductController extends Controller
             'type' => 'nullable|string',
         ]);
 
-        if ($request->hasFile('image')) {
+       if ($request->hasFile('image')) {
+            // Delete the old image
+            if ($product->image && Storage::disk('public')->exists($product->image)) {
+                Storage::disk('public')->delete($product->image);
+            }
+
+            // Store the new image
             $imagePath = $request->file('image')->store('products', 'public');
             $validated['image'] = $imagePath;
         }
+
 
         $product->update($validated);
 

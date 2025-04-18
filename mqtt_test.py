@@ -32,7 +32,7 @@ try:
         # Generate random location and increment RFID ID
         random_location = random.choice(locations)
         data = {
-            "rfid": str(rfid_counter),
+            "tag_id": str(rfid_counter),
             "location": random_location
         }
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use PhpMqtt\Client\Facades\MQTT;
 use PhpMqtt\Client\MqttClient;
 use Illuminate\Support\Facades\Log;
-use App\Events\MessageReceived;
+use App\Events\MessageEvent;
 use PhpMqtt\Client\Exceptions\MqttClientException;
 use App\Jobs\StoreRfidLocation;
 use App\Models\RfidLocation;
@@ -15,14 +15,16 @@ class MqttController extends Controller
     public static function MqttSubscribe(){
 
             // $data =  [ 
-            //          "rfid" => "3",
+            //          "tag_id" => "3",
             //         "location" => "Room E"
             // ];
 
-           //  $message = '{"rfid": "2", "location": "Room E"}';
+           //  $message = '{"tag_id": "2", "location": "Room E"}';
+
+           //  $data = json_decode($message, true);
 
            //  // StoreRfidLocation::dispatch($data);
-           // broadcast(new MessageReceived($message));
+           // broadcast(new MessageEvent($data));
 
 
 
@@ -40,10 +42,9 @@ class MqttController extends Controller
                     $data = json_decode($message, true);
                  
                     // Store in DB via Job
-                    // StoreRfidLocation::dispatch($data);
                     StoreRfidLocation::dispatch($data);
                     // Broadcast to frontend
-                    // broadcast(new MessageReceived($message));
+                    broadcast(new MessageEvent($data));
                 } catch (\Exception $e) {
                     Log::error('Failed to broadcast: ' . $e->getMessage());
                 }
