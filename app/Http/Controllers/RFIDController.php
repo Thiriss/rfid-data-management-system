@@ -36,6 +36,7 @@ class RfidController extends Controller
         return redirect()->route('rfids.index')->with('success', 'RFID tag created successfully');
     }
 
+
     // Show edit form
     public function edit(Rfid $rfid)
     {
