@@ -45,14 +45,20 @@
                             <td class="px-4 py-2">{{ $product->type }}</td>
                             <td class="px-4 py-2">{{ $product->price }}</td>
                             <td class="px-4 py-2">
-                                <a href="{{ route('products.edit', $product->id)}}">
-                                <x-primary-button>
-                                    {{ __('Edit') }}
-                                </x-primary-button>
-                                <a href="{{ route('products.destroy', $product->id)}}">
-                                <x-danger-button>
-                                    {{ __('Delete') }}
-                                </x-danger-button>
+                                <div class="flex space-x-4">
+                                    <a href="{{ route('products.edit', $product->id)}}">
+                                        <x-primary-button>
+                                            {{ __('Edit') }}
+                                        </x-primary-button>
+                                    </a>
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')                                
+                                        <x-danger-button>
+                                            {{ __('Delete') }}
+                                        </x-danger-button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

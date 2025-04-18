@@ -35,16 +35,23 @@
                             <td class="px-4 py-2">{{ $rfid->product->name ?? 'Unassigned' }}</td>
                             <td class="px-4 py-2">{{ $rfid->status }}</td>
                             <td class="px-4 py-2">
-                                <a href="{{ route('rfids.edit', $rfid->id)}}">
-                                <x-primary-button>
-                                    {{ __('Edit') }}
-                                </x-primary-button>
-                                <a href="{{ route('rfids.destroy', $rfid->id)}}">
-                                <x-danger-button>
-                                    {{ __('Delete') }}
-                                </x-danger-button>
+                                <div class="flex space-x-4">
+                                    <a href="{{ route('rfids.edit', $rfid->id) }}">
+                                        <x-primary-button>
+                                            {{ __('Edit') }}
+                                        </x-primary-button>
+                                    </a>
+                            
+                                    <form action="{{ route('rfids.destroy', $rfid->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <x-danger-button>
+                                            {{ __('Delete') }}
+                                        </x-danger-button>
+                                    </form>
+                                </div>
                             </td>
-                        </tr>
+                            
                     @endforeach
                 </tbody>
             </table>
