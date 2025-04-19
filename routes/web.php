@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RFIDController;
+use App\Http\Controllers\RfidController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -43,12 +43,12 @@ Route::middleware('auth')->group(function () {
 
 
     // RFID routes
-    Route::get('/rfids', [RFIDController::class, 'index'])->name('rfids.index');
-    Route::get('/rfids/create', [RFIDController::class, 'create'])->name('rfids.create');
-    Route::post('/rfids', [RFIDController::class, 'store'])->name('rfids.store');
-    Route::get('/rfids/{rfid}/edit', [RFIDController::class, 'edit'])->name('rfids.edit');
-    Route::put('/rfids/{rfid}', [RFIDController::class, 'update'])->name('rfids.update');
-    Route::delete('/rfids/{rfid}', [RFIDController::class, 'destroy'])->name('rfids.destroy');
+    Route::get('/rfids', [RfidController::class, 'index'])->name('rfids.index');
+    Route::get('/rfids/create', [RfidController::class, 'create'])->name('rfids.create');
+    Route::post('/rfids', [RfidController::class, 'store'])->name('rfids.store');
+    Route::get('/rfids/{rfid}/edit', [RfidController::class, 'edit'])->name('rfids.edit');
+    Route::put('/rfids/{rfid}', [RfidController::class, 'update'])->name('rfids.update');
+    Route::delete('/rfids/{rfid}', [RfidController::class, 'destroy'])->name('rfids.destroy');
     Route::get('/dashboard/details/{tag_id}', [DashboardController::class, 'showByTagId'])->name('dashboard.details');
 
 });
