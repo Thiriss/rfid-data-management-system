@@ -2,6 +2,7 @@
 namespace App\Jobs;
 
 use App\Models\RfidLocation;
+use App\Models\Rfid;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -21,7 +22,16 @@ class StoreRfidLocation implements ShouldQueue
 
     public function handle(): void
     {
+        $checkId = Rfid::where('tag_id', $this->data['tag_id'])
+        ->exists();
 
+        if (!$checkId) {
+            // Create new active record
+            Rfid::create([
+                'tag_id' => $this->data['tag_id'],
+                'status' => 'active',
+            ]);
+        }
         // Check if there's already an active row with same RFID and same location
         $exists = RfidLocation::where('tag_id', $this->data['tag_id'])
             ->where('location',  $this->data['location'])
