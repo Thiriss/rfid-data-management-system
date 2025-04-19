@@ -32,7 +32,7 @@
                             <!-- Display the row number -->
                             <td class="px-4 py-2">{{ $loop->iteration }}</td>
                             <td class="px-4 py-2">{{ $rfid->tag_id }}</td>
-                            <td class="px-4 py-2">{{ $rfid->product->name ?? 'Unassigned' }}</td>
+                            <td class="px-4 py-2">{{ $rfid->product->name ?? '-' }}</td>
                             <td class="px-4 py-2">{{ $rfid->status }}</td>
                             <td class="px-4 py-2">
                                 <div class="flex space-x-4">

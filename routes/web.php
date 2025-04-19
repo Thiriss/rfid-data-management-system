@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/rfids/{rfid}', [RfidController::class, 'update'])->name('rfids.update');
     Route::delete('/rfids/{rfid}', [RfidController::class, 'destroy'])->name('rfids.destroy');
     Route::get('/dashboard/details/{tag_id}', [DashboardController::class, 'showByTagId'])->name('dashboard.details');
+    Route::get('/dashboard/{tag_id}/edit', [DashboardController::class, 'editByTagId'])->name('dashboard.edit');
 
 });
 

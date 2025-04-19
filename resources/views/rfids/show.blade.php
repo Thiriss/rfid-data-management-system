@@ -22,52 +22,60 @@
                 @if($rfid->status)
                 <div class="flex">
                     <span class="w-32 font-medium text-gray-700">Status:</span>
-                    <span class="text-gray-800">{{ $rfid->status }}</span>
+                    <span class="text-gray-800">{{ $rfid->status}}</span>
                 </div>
                 @endif
 
                 @if($rfid->name)
                 <div class="flex">
                     <span class="w-32 font-medium text-gray-700">Name:</span>
-                    <span class="text-gray-800">{{ $rfid->name }}</span>
+                    <span class="text-gray-800">{{ $rfid->name}}</span>
                 </div>
                 @endif
 
                 @if($rfid->category)
                 <div class="flex">
                     <span class="w-32 font-medium text-gray-700">Category:</span>
-                    <span class="text-gray-800">{{ $rfid->category }}</span>
+                    <span class="text-gray-800">{{ $rfid->category}}</span>
                 </div>
                 @endif
 
                 @if($rfid->type)
                 <div class="flex">
                     <span class="w-32 font-medium text-gray-700">Type:</span>
-                    <span class="text-gray-800">{{ $rfid->type }}</span>
+                    <span class="text-gray-800">{{ $rfid->type}}</span>
                 </div>
                 @endif
 
                 @if($rfid->size)
                 <div class="flex">
                     <span class="w-32 font-medium text-gray-700">Size:</span>
-                    <span class="text-gray-800">{{ $rfid->size }}</span>
+                    <span class="text-gray-800">{{ $rfid->size}}</span>
                 </div>
                 @endif
 
                 @if($rfid->price)
                 <div class="flex">
                     <span class="w-32 font-medium text-gray-700">Price:</span>
-                    <span class="text-gray-800">{{ $rfid->price }}</span>
+                    <span class="text-gray-800">{{ $rfid->price}}</span>
                 </div>
                 @endif
 
             </div>
 
-            <div class="mt-6">
-                <a href="{{ route('dashboard') }}" class="inline-block bg-gray-600 hover:bg-gray-400 text-white px-4 py-2 rounded-md">
-                    Back to List
-                </a>
-            </div>
+        <!-- Back Button -->
+
+        <div class="mt-8 flex space-x-4">
+            <a href="{{ route('dashboard.edit', $rfid->tag_id) }}"
+               class="inline-block bg-red-800 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Edit
+            </a>
+            <a href="{{ route('dashboard') }}"
+               class="inline-block bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-400">
+                Back to List
+            </a>
+        </div>
+
         </div>
     </div>
 </x-app-layout>

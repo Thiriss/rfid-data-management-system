@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RfidLocation;
 use App\Models\Rfid;
+use App\Models\Product;
 class DashboardController extends Controller
 {
     public function index()
@@ -18,14 +19,36 @@ class DashboardController extends Controller
 
      public function showByTagId($tag_id)
     {
-        $rfid = Rfid::select('rfids.tag_id','rfid_locations.location',
-                'rfid_locations.status','products.name','products.price','products.size',
-                'products.category','products.type')
-                ->leftJoin('rfid_locations', 'rfid_locations.tag_id', 'rfids.tag_id')
-                ->leftJoin('products', 'products.id', 'rfids.product_id')
-                ->where('rfid_locations.tag_id', $tag_id)
-                ->firstOrFail();
-    
+
+           $rfid = Rfid::select('rfids.tag_id','rfid_locations.location',
+            'rfid_locations.status','products.name','products.price','products.size',
+            'products.category','products.type')
+            ->leftJoin('rfid_locations', 'rfid_locations.tag_id', 'rfids.tag_id')
+            ->leftJoin('products', 'products.id', 'rfids.product_id')
+            ->where('rfid_locations.tag_id', $tag_id)
+            ->firstOrFail();
+
+      
         return view('rfids.show', compact('rfid'));
     }
+
+    public function editByTagId($tag_id)
+    {
+        
+        $rfid = Rfid::where('tag_id', $tag_id)->first();
+
+        $currentProductId = $rfid->product_id;
+        $products = Product::withCount(['rfids as assigned_count'])
+                    ->get()
+                    ->filter(function ($product) use ($currentProductId) {
+                    // Keep products that are not fully assigned OR the one currently assigned
+                        return $product->quantity > $product->assigned_count || $product->id === $currentProductId;
+                    })
+                    ->values();
+
+        return view('rfids.edit', compact('rfid', 'products'));
+    
+    }
+
+    
 }
