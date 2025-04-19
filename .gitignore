@@ -1,0 +1,27 @@
+# Laravel storage, vendor, and other generated directories
+/storage/*
+/vendor/
+/public/storage
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# .env file for sensitive environment variables
+.env
+
+# Any other files you want to ignore
+*.bak
+*.swp
+
+# Composer and Node Package manager caches
+/composer.phar
+/npm-debug.log
+/yarn.lock
+
+# Node modules (if using node.js)
+node_modules/
+
+# Node.js debug logs
+npm-debug.log
+yarn-error.log
