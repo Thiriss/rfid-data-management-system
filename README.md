@@ -55,9 +55,9 @@
 
 # Commands to Run Concurrently
 
-php artisan serve
-php artisan reverb:start --debug
-python mqtt_test.py 
-php artisan mqtt:listen
-php artisan queue:work
-npm run dev
+- php artisan serve
+- php artisan reverb:start --debug
+- python mqtt_test.py 
+- php artisan mqtt:listen
+- php artisan queue:work
+- npm run dev
