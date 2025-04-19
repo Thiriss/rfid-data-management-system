@@ -25,3 +25,5 @@ node_modules/
 # Node.js debug logs
 npm-debug.log
 yarn-error.log
+
+venv/
