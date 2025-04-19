@@ -1,17 +1,36 @@
-<div class="w-full">
+<nav class="w-full">
     <ul class="space-y-4">
-        <li class="flex items-center px-4 py-2 hover:bg-gray-200 rounded-lg">
-            <img src="{{ asset('img/home.png') }}" alt="Home" class="w-8 h-8 mr-3">
-            <a href="{{ route('dashboard') }}" class="text-gray-700">Home</a>
+        <!-- Dashboard -->
+        <li>
+            <a href="{{ route('dashboard') }}" 
+                class="flex items-center px-4 py-2 
+                    {{ request()->routeIs('dashboard*') ? 'bg-red-800 text-white' : 'hover:bg-gray-200' }} 
+                    rounded-lg transition">
+                <img src="{{ asset('img/home.png') }}" alt="Home" class="w-6 h-6 mr-3">
+                <span>Dashboard</span>
+            </a>
         </li>
-        <li class="flex items-center px-4 py-2 hover:bg-gray-200 rounded-lg">
-            <img src="{{ asset('img/hanger.png') }}" alt="Products" class="w-6 h-6 mr-3">
-            <a href="{{ route('products.index') }}" class="text-gray-700">Products</a>
+
+        <!-- Products -->
+        <li>
+            <a href="{{ route('products.index') }}" 
+                class="flex items-center px-4 py-2 
+                    {{ request()->routeIs('products*') ? 'bg-red-800 text-white' : 'hover:bg-gray-200' }} 
+                    rounded-lg transition">
+                <img src="{{ asset('img/hanger.png') }}" alt="Products" class="w-6 h-6 mr-3">
+                <span>Products</span>
+            </a>
         </li>
-        <li class="flex items-center px-4 py-2 hover:bg-gray-200 rounded-lg cursor-pointer">
-            <img src="{{ asset('img/rfid.png') }}" alt="RFIDs" class="w-8 h-8 mr-1">
-            <a href="{{ route('rfids.index') }}" class="text-gray-700">RFIDs</a>
+
+        <!-- RFIDs -->
+        <li>
+            <a href="{{ route('rfids.index') }}" 
+                class="flex items-center px-4 py-2 
+                    {{ request()->routeIs('rfids*') ? 'bg-red-800 text-white' : 'hover:bg-gray-200' }} 
+                    rounded-lg transition">
+                <img src="{{ asset('img/rfid.png') }}" alt="RFIDs" class="w-6 h-6 mr-3">
+                <span>RFIDs</span>
+            </a>
         </li>
-        
     </ul>
-</div>
+</nav>
