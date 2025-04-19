@@ -5,7 +5,7 @@
         <form action="{{ route('rfids.update', $rfid->id) }}" method="POST" class="space-y-6">
             @csrf
             @method('PUT')
-
+            <input type="hidden" name="redirect_to" value="{{ url()->previous() }}">
             <div class="flex space-x-4">
                 <div class="flex-1">
                     <x-input-label for="tag_id" value="Tag ID" />

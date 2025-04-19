@@ -68,7 +68,10 @@ class RfidController extends Controller
 
         $rfid->update($validated);
 
-        return redirect()->route('rfids.index')->with('success', 'RFID tag updated successfully');
+        $redirectTo = $request->input('redirect_to') ?? route('rfids.index'); 
+
+        return redirect($redirectTo)->with('success', 'RFID tag updated successfully!');
+
     }
 
     // Delete RFID tag
