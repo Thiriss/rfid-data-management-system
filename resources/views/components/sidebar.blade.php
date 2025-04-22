@@ -28,8 +28,18 @@
                 class="flex items-center px-4 py-2 
                     {{ request()->routeIs('rfids*') ? 'bg-gray-600 text-white' : 'hover:bg-gray-200' }} 
                     rounded-lg transition">
-                <img src="{{ asset('img/rfid.png') }}" alt="RFIDs" class="w-6 h-6 mr-3">
+                <img src="{{ asset('img/signal.png') }}" alt="RFIDs" class="w-6 h-6 mr-3">
                 <span>RFIDs</span>
+            </a>
+        </li>
+        <!-- Location -->
+        <li>
+            <a href="{{ route('locations.index') }}" 
+                class="flex items-center px-4 py-2 
+                    {{ request()->routeIs('locations*') ? 'bg-gray-600 text-white' : 'hover:bg-gray-200' }} 
+                    rounded-lg transition">
+                <img src="{{ asset('img/location.png') }}" alt="Locations" class="w-6 h-6 mr-3">
+                <span>Locations</span>
             </a>
         </li>
     </ul>

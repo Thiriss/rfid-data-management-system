@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RfidController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -51,6 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/rfids/{rfid}', [RfidController::class, 'destroy'])->name('rfids.destroy');
     Route::get('/dashboard/details/{tag_id}', [DashboardController::class, 'showByTagId'])->name('dashboard.details');
     Route::get('/dashboard/{tag_id}/edit', [DashboardController::class, 'editByTagId'])->name('dashboard.edit');
+
+    Route::get('/locations', [RoomController::class, 'index'])->name('locations.index');
+    Route::get('/locations/{location}', [RoomController::class, 'show'])->name('locations.show');
 
 });
 
