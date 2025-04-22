@@ -14,6 +14,7 @@ class RoomController extends Controller
     {
         $locations = RfidLocation::select('location', DB::raw('COUNT(*) as total_items'))
         ->whereNotNull('location')
+        ->where('status', 'active')
         ->groupBy('location')
         ->get();
 
@@ -26,6 +27,7 @@ class RoomController extends Controller
             ->join('rfid_locations', 'rfids.tag_id', '=', 'rfid_locations.tag_id')
             ->leftJoin('products', 'rfids.product_id', '=', 'products.id')
             ->where('rfid_locations.location', $location)
+            ->where('status', 'active')
             ->select(
                 'rfids.tag_id',
                 'products.name as product_name',
