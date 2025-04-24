@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('rfids', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tag_id')->unique();
+            $table->string('tag_id', 255)->unique();
             $table->foreignId('product_id')->nullable()->constrained()->onDelete('set null');
             $table->string('status')->nullable();
             $table->timestamps();

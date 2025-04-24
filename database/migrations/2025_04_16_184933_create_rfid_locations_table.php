@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('rfid_locations', function (Blueprint $table) {
             $table->id();
-            $table->integer('tag_id');
+            $table->string('tag_id', 255);
             $table->string('location')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
