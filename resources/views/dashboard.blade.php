@@ -12,6 +12,7 @@
                     <tr>
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">No</th>
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">Tag ID</th>
+                        <th class="px-4 py-2 text-sm font-medium text-gray-600">Product</th>
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">Location</th>
                         <th class="px-4 py-2 text-sm font-medium text-gray-600">Actions</th>
                     </tr>
@@ -21,6 +22,9 @@
                         <tr class="border-b" data-tag-id="{{ $tag->tag_id }}">
                             <td class="px-4 py-2">{{ $index + 1 }}</td>
                             <td class="px-4 py-2">{{ $tag->tag_id }}</td>
+                            <td class="px-4 py-2">
+                                {{ $tag->product_name ?? '-' }}
+                            </td>                            
                             <td class="px-4 py-2 location">{{ $tag->location }}</td>
                             <td class="px-4 py-2">
                                  <a href="{{ route('dashboard.details', $tag->tag_id) }}">
@@ -69,15 +73,15 @@
             existingRow.querySelector('td.location').innerText = location;
 
             // Highlight update row
-            existingRow.classList.add('bg-yellow-100');
+            existingRow.classList.add('bg-yellow-300');
             setTimeout(() => {
-                existingRow.classList.remove('bg-yellow-100');
-            }, 2000); // revert back after 2 seconds
+                existingRow.classList.remove('bg-yellow-300');
+            }, 5000); // revert back after 2 seconds
         } else {
             const newRow = document.createElement('tr');
             newRow.setAttribute('data-tag-id', tagId);
             newRow.classList.add('border-b'); // highlight new row
-            newRow.classList.add('bg-green-100'); // highlight new row
+            newRow.classList.add('bg-green-300'); // highlight new row
 
             const detailsUrl = `/dashboard/details/${tagId}`;
             newRow.innerHTML = `
@@ -96,8 +100,8 @@
 
             // Remove highlight after 2 seconds
             setTimeout(() => {
-                newRow.classList.remove('bg-green-100');
-            }, 2000);
+                newRow.classList.remove('bg-green-300');
+            }, 5000);
         }
     });
 });

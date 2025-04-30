@@ -44,7 +44,7 @@
                 @if($product->price)
                 <div class="flex">
                     <span class="w-32 font-medium text-gray-700">Price:</span>
-                    <span class="text-gray-800">${{ number_format($product->price, 2) }}</span>
+                    <span class="text-gray-800">{{ number_format($product->price, 2) }} THB</span>
                 </div>
                 @endif
 

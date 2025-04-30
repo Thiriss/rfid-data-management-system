@@ -5,17 +5,32 @@ use Illuminate\Http\Request;
 use App\Models\RfidLocation;
 use App\Models\Rfid;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+
 class DashboardController extends Controller
 {
-    public function index()
-    {
-        $rfidData = RfidLocation::where('status', 'active')
-                    ->orderBy('id', 'asc')
-                    // ->latest()->take(20)
-                    ->get();
+    // public function index()
+    // {
+    //     $rfidData = RfidLocation::where('status', 'active')
+    //                 ->orderBy('id', 'asc')
+    //                 // ->latest()->take(20)
+    //                 ->get();
 
-        return view('dashboard', compact('rfidData'));
-    }
+    //     return view('dashboard', compact('rfidData'));
+    // }
+
+    public function index()
+{
+    $rfidData = DB::table('rfid_locations')
+        ->join('rfids', 'rfid_locations.tag_id', '=', 'rfids.tag_id')
+        ->leftJoin('products', 'rfids.product_id', '=', 'products.id')
+        ->where('rfid_locations.status', 'active')
+        ->orderBy('rfid_locations.id', 'asc')
+        ->select('rfid_locations.*', 'products.name as product_name')
+        ->get();
+
+    return view('dashboard', compact('rfidData'));
+}
 
      public function showByTagId($tag_id)
     {
@@ -26,6 +41,7 @@ class DashboardController extends Controller
             ->leftJoin('rfid_locations', 'rfid_locations.tag_id', 'rfids.tag_id')
             ->leftJoin('products', 'products.id', 'rfids.product_id')
             ->where('rfid_locations.tag_id', $tag_id)
+            ->where('rfid_locations.status', 'active')
             ->firstOrFail();
 
       

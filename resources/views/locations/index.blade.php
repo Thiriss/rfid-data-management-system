@@ -22,8 +22,10 @@
                             <td class="py-2 px-4">{{ $location->location }}</td>
                             <td class="py-2 px-4">{{ $location->total_items }}</td>
                             <td class="py-2 px-4">
-                                <a href="{{ route('locations.show', ['location' => $location->location]) }}" class="inline-block bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded">
-                                    View Details
+                                <a href="{{ route('locations.show', ['location' => $location->location]) }}">
+                                    <x-primary-button>
+                                        View Details
+                                    </x-primary-button>
                                 </a>
                             </td>
                         </tr>

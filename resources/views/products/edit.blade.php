@@ -38,7 +38,7 @@
                         <x-input-error class="mt-2" :messages="$errors->get('price')" />
                     </div>
                     <div class="flex-1">
-                        <x-input-label for="quantity" :value="__('Price')" />
+                        <x-input-label for="quantity" :value="__('Quantity')" />
                         <x-text-input id="quantity" name="quantity" type="number" step="0.01" class="mt-1 block w-full"
                             value="{{ old('quantity', $product->quantity) }}" required />
                         <x-input-error class="mt-2" :messages="$errors->get('quantity')" />

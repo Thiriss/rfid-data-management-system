@@ -26,7 +26,7 @@
                             <td class="px-4 py-3">{{ $rfid->category ?? '-' }}</td>
                             <td class="px-4 py-3">{{ $rfid->type ?? '-' }}</td>
                             <td class="px-4 py-3">{{ $rfid->size ?? '-' }}</td>
-                            <td class="px-4 py-3">{{ $rfid->price ? number_format($rfid->price, 2) . ' MMK' : '-' }}</td>
+                            <td class="px-4 py-3">{{ $rfid->price ? number_format($rfid->price, 2) . ' THB' : '-' }}</td>
                         </tr>
                     @empty
                         <tr>

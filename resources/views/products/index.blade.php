@@ -44,7 +44,7 @@
                             <td class="px-4 py-2">{{ $product->size }}</td>
                             <td class="px-4 py-2">{{ $product->category }}</td>
                             <td class="px-4 py-2">{{ $product->type }}</td>
-                            <td class="px-4 py-2">{{ $product->price }}</td>
+                            <td class="px-4 py-2">{{ $product->price }} THB</td>
                             <td class="px-4 py-2">{{ $product->quantity }}</td>
                             <td class="px-4 py-2">
                                 <div class="flex space-x-4">

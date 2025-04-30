@@ -8,7 +8,7 @@
             <div class="flex space-x-4">
                 <div class="flex-1">
                 <x-input-label for="tag_id" value="Tag ID" />
-                <x-text-input id="tag_id" name="tag_id" type="number" class="mt-1 block w-full" required />
+                <x-text-input id="tag_id" name="tag_id" type="text" class="mt-1 block w-full" required />
                 <x-input-error class="mt-2" :messages="$errors->get('tag_id')" />           
             </div>
             </div>
