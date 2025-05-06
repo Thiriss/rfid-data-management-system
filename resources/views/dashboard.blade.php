@@ -87,6 +87,7 @@
             newRow.innerHTML = `
                 <td class="px-4 py-2">${tableBody.children.length + 1}</td>
                 <td class="px-4 py-2">${tagId}</td>
+                <td class="px-4 py-2">-</td>
                 <td class="px-4 py-2 location">${location}</td>
                 <td class="px-4 py-2">
                     <a href="${detailsUrl}">

@@ -14,28 +14,28 @@ use App\Models\Rfid;
 class MqttController extends Controller
 {
 
-    public function TestQueueAndBroadcast()
-    {
+    // public function TestQueueAndBroadcast()
+    // {
 
-            $message = '{"tag_id": "100", "location": "Room A"}';
+    //         $message = '{"tag_id": "100", "location": "Room A"}';
 
-            $data = json_decode($message, true);
-            $checkId = Rfid::where('tag_id', $data['tag_id'])
-            ->exists();
+    //         $data = json_decode($message, true);
+    //         $checkId = Rfid::where('tag_id', $data['tag_id'])
+    //         ->exists();
             
-            if (!$checkId) {
-                // Create new active record
-                Rfid::create([
-                    'tag_id' => $data['tag_id'],
-                    'status' => 'active',
-                ]);
-            }
+    //         if (!$checkId) {
+    //             // Create new active record
+    //             Rfid::create([
+    //                 'tag_id' => $data['tag_id'],
+    //                 'status' => 'active',
+    //             ]);
+    //         }
             
-            StoreRfidLocation::dispatch($data);
-            broadcast(new MessageEvent($data));
-            return "success";
+    //         StoreRfidLocation::dispatch($data);
+    //         broadcast(new MessageEvent($data));
+    //         return "success";
 
-    }
+    // }
 
     public static function MqttSubscribe(){
 

@@ -78,6 +78,7 @@ class RfidController extends Controller
     public function destroy(Rfid $rfid)
     {
         $rfid->delete();
+        $rfid->location()->delete();
         return redirect()->route('rfids.index')->with('success', 'RFID tag deleted successfully');
     }
 }

@@ -19,5 +19,11 @@ class Rfid extends Model
     {
          return $this->hasOne(RfidLocation::class, 'tag_id', 'tag_id')->latestOfMany();
     }
+    // Rfid.php
+    public function location()
+    {
+        return $this->hasOne(RfidLocation::class, 'tag_id', 'tag_id');
+    }
+
 }
 
