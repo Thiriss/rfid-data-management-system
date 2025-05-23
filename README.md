@@ -62,7 +62,7 @@
 - php artisan queue:work
 - npm run dev
 
-RFID Based Inventory Management System
+## RFID Based Inventory Management System
 
 ## Introductions
 Radio Frequency Identification (RFID) is a technology that uses electromagnetic fields to identify and track objects via tags. Unlike traditional barcodes, RFID does not require direct line-of-sight and can process multiple items simultaneously, making it highly efficient.
